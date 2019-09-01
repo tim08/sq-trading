@@ -2,6 +2,7 @@ class MainController < ApplicationController
   def index
     @player = Player.first
     @current_player = current_player
+    @all_players = Player.all
   end
 
   def adv_board

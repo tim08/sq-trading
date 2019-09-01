@@ -1,5 +1,5 @@
 player:
-  currency_amaunt: 100
+  currency_amount: 100
 
 market:
   max_amaunt_of_lots: 10

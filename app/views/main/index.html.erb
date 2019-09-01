@@ -1,8 +1,9 @@
 <h1></h1>
 <h2>Вход</h2>
 войти как:
-<%= link_to 'Player 1', sing_in_url(:player_id => 1), method: :post %>
-<%= link_to 'Player 2', sing_in_url(:player_id => 2), method: :post %>
+<% @all_players.each do |player| %>
+  <%= link_to player.nickname, sing_in_url(:player_id => player.id), method: :post %>
+<% end %>
 <% if @current_player %>
   <br>
   Текущий юзер: <%= @current_player.try(:nickname) %>   <%= link_to "Выйти", sing_out_path, :method => :delete %>
