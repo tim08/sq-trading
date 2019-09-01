@@ -58,7 +58,7 @@ class ProductItemsController < ApplicationController
     respond_to do |format|
     if @product_item.check_available_number(product_item_params[:number]) && @product_item.valid?
       @product_item.split_stack(product_item_params)
-      format.html { redirect_to @product_item, notice: 'Product item was successfully updated.' }
+      format.html { redirect_to store_player_path(@product_item.player), notice: 'Product item was successfully updated.' }
       format.xml  { render :show, status: :ok, location: @product_item }
     else
       @product_item.errors[:base] << "you do not have so many products"
@@ -70,7 +70,7 @@ class ProductItemsController < ApplicationController
   def withdraw_from_sale
     respond_to do |format|
       if @product_item.update_column(:trade_status, false)
-        format.html { redirect_to @product_item, notice: 'Product item was successfully updated.' }
+        format.html { redirect_to market_player_path(@product_item.player), notice: 'Product item was successfully updated.' }
       end
     end
   end
@@ -78,7 +78,7 @@ class ProductItemsController < ApplicationController
   def to_advertise
     respond_to do |format|
       if @product_item.to_advertise
-        format.html { redirect_to @product_item, notice: 'Product item was successfully updated.' }
+        format.html {  redirect_to market_player_path(@product_item.player), notice: 'Product item was successfully updated.' }
       end
     end
   end
