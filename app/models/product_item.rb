@@ -16,7 +16,7 @@ class ProductItem < ApplicationRecord
   end
 
   def to_advertise
-    config = YAML.load_file('Config/trading_setting.yml')
+    config = YAML.load_file("#{Rails.root}/config/trading_setting.yml")
     ActiveRecord::Base.transaction do
       player.update!(currency_amount: player.currency_amount - config["market"]["payment_for_advertising"])
       update_attribute(:adv, true)
