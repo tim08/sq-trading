@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Store <%= @player.nickname %></h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Product</th>
+    <th>Number</th>
+    <th>Price</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @product_items.each do |product_item| %>
+    <tr>
+      <td><%= product_item.product.name %></td>
+      <td><%= product_item.number %></td>
+      <td><%= product_item.price %></td>
+      <td><%= link_to 'put up for sale', to_sell_product_item_path(product_item) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Player', new_player_path %>

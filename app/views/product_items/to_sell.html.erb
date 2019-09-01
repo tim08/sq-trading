@@ -1,0 +1,33 @@
+<h1>Sale Product Item</h1>
+
+<%= form_with(model: @product_item, local: true, url: {action: 'update_sell'}, method: :put) do |form| %>
+     <%#= form_with model: @person, url: { action: "create" }, builder: LabellingFormBuilder do |form| %>
+  <% if @product_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product_item.errors.count, "error") %> prohibited this product_item from being saved:</h2>
+
+      <ul>
+        <% @product_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :number %>
+    <%= form.number_field :number, id: :product_item_number, :min => 1, :max => 10 %>
+  </div>
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, id: :product_item_price %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "To sell" %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Show', @product_item %> |
+<%= link_to 'Back', product_items_path %>

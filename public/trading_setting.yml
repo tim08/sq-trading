@@ -1,0 +1,7 @@
+player:
+  currency_amaunt: 100
+
+market:
+  max_amaunt_of_lots: 10
+  max_amaunt_of_products: 10
+  payment_for_advertising: 5

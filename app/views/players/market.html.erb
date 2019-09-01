@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Store <%= @player.nickname %></h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Product</th>
+    <th>Number</th>
+    <th>Price</th>
+    <th>ADV status</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @product_items.each do |product_item| %>
+    <tr>
+      <td><%= product_item.product.name %></td>
+      <td><%= product_item.number %></td>
+      <td><%= product_item.price %></td>
+      <td><%= product_item.adv %></td>
+      <td><%= link_to 'advertise', to_advertise_product_item_path(product_item), method: :put  %></td>
+      <td><%= link_to 'withdraw from sale', withdraw_from_sale_product_item_path(product_item), method: :put %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+

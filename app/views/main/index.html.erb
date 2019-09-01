@@ -1,0 +1,53 @@
+<h1></h1>
+<h2>Вход</h2>
+войти как:
+<%= link_to 'Player 1', sing_in_url(:player_id => 1), method: :post %>
+<%= link_to 'Player 2', sing_in_url(:player_id => 2), method: :post %>
+<% if @current_player %>
+  <br>
+  Текущий юзер: <%= @current_player.try(:nickname) %>   <%= link_to "Выйти", sing_out_path, :method => :delete %>
+  <br>
+  Api-key: <%= @current_player.try(:api_key) %>
+  <br>
+  Хранилище: <%= link_to store_player_url(@current_player), store_player_url(@current_player) %>
+  <br>
+  Продажа товаров: <%= link_to market_player_url(@current_player), market_player_url(@current_player) %>
+<% end %>
+<br>
+Доска объявлений: <%= link_to adv_board_url, adv_board_url %>
+<h2>Файл настроек trading_setting.yml:</h2>
+
+<%= link_to "trading_setting.yml", root_path + 'trading_setting.yml'%>
+<h2>Http Api для получения данных ввиде xml</h2>
+<ol>
+  <li> Получение информации об игроке: <%= link_to player_url(@player, format: :xml), player_url(@player, format: :xml),
+                                                   :target => '_blank' %></li>
+  <li> Получение информации о рынке игрока: <%= link_to market_player_url(@player, format: :xml), market_player_url(@player, format: :xml),
+                                                        :target => '_blank' %></li>
+  <li> Получение пула объявлений с возможностью фильтрации: <%= link_to adv_board_url(format: :xml), adv_board_url(format: :xml),
+                                                        :target => '_blank' %>
+    <br>Доступные параметры:
+    <ul>
+      <li>product_id  - справочник доступен по <%= link_to products_url( format: :xml), products_url(format: :xml), :target => '_blank' %></li></li>
+      <li>price</li>
+      <li>number</li>
+    </ul>
+
+  </li>
+
+  <li>Команды выставления продукта на продажу, покупки продукта, размещения
+    объявления и снятии с продажи продукта:</li>
+
+  <ul>
+    <li>Выставления продукта на продажу PUT <%= link_to update_sell_product_item_url(@player.product_items.last, format: :xml), nil,
+                                                    :target => '_blank' %></li>
+    <li>Cнятии продукта с продажи  PUT <%= link_to withdraw_from_sale_product_item_url(@player.product_items.last, format: :xml), nil,
+                                                    :target => '_blank' %></li>
+    <li>Размещения объявления  PUT <%= link_to to_advertise_product_item_url(@player.product_items.last, format: :xml), nil,
+                                                    :target => '_blank' %></li>
+    <li>Покупка продукта PUT <%= link_to withdraw_from_sale_product_item_url(@player.product_items.last, format: :xml), nil,
+                                               :target => '_blank' %></li>
+  </ul>
+</ol>
+
+
